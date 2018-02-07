@@ -20,15 +20,18 @@ class Lk extends CI_Controller {
 		{
 			redirect('auth/login', 'refresh'); // если не авторизован то иди на главную
 		}
+        else{
+            $data['title'] = ucfirst('Личный кабинет');
 
-		$data['title'] = ucfirst('Личный кабинет');
-		
-		$data['message'] = 'Тест страница';
-		
-		$this->load->view('templates/header', $data);
-		$this->load->view('user/test', $data);
-		
-		$this->load->view('templates/footer', $data);
+            $data['message'] = 'Тест страница';
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('user/test', $data);
+
+            $this->load->view('templates/footer', $data);
+         }
+
+
 
 	}
 
@@ -172,5 +175,21 @@ class Lk extends CI_Controller {
 
 	}
 
+    public function login()
+    {
+
+            $data['title'] = ucfirst('Личный кабинет');
+
+            $data['message'] = 'Тест страница';
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('user/test', $data);
+
+            $this->load->view('templates/footer', $data);
+
+
+
+
+    }
 	
 }

@@ -1,6 +1,6 @@
 #Ion Auth 2
 ###The future of authentication
-by [Ben Edmunds](http://benedmunds.com)
+by [Ben Edmunds](http://benedmunds.com) 
 
 Redux Auth 2 had a lot of potential.  It's lightweight, simple, and clean,
 but had a ton of bugs and was missing some key features.  So we refactored
