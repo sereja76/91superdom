@@ -77,9 +77,11 @@ class Superdom_model extends CI_Model {
         return $request;
     }
 
-    public function select_places ($customer) {
+    public function select_places ($customer, $page) {
+        $sel ='';
         $select_places ='';
-        $select_places .="<select class='form-control select2'>
+        $select_places .="<form name=\"myForm\" action=\"{$page}\" method='POST'>
+<select name='places_sel' class='form-control select2' onchange=\"document.forms['myForm'].submit()\">
             <option>Выберите обьект</option>";
 
 
@@ -89,19 +91,46 @@ class Superdom_model extends CI_Model {
 
             foreach ($companies['buildings'] as $buildings):
 
-                //echo '  '.$buildings['title'];
-
                 foreach ($buildings['places'] as $places):
-                    //echo ' '.$places['title']."<br/>";
-                    $select_places .= "<option value='{$places['id']}'>{$buildings['title']} {$places['title']}</option>";
+                    if($_SESSION['places_sel'] == $places['id'] ){
+                        $sel ='selected';
+                    }
+                    else{
+                        $sel ='';
+                    }
+
+                    $select_places .= "<option value='{$places['id']}' {$sel}>{$buildings['title']} {$places['title']}</option>";
                 endforeach;
 
             endforeach;
             $select_places .= "</optgroup>";
         endforeach;
 
-        $select_places .= "</select>";
+        $select_places .= "</select></form>";
 
         return $select_places;
     }
+
+    public function selected_places () {
+        // проверка была ли форма отправлена
+        $this->form_validation->set_rules('places_sel', 'Помещение', 'trim|required|min_length[1]|max_length[15]');
+
+        if ($this->form_validation->run() == FALSE)
+        {
+            //echo'не прошла проверка';
+        }
+        else // успешно сохраняется
+        {
+            $newdata = array(
+                'places_sel'=> $this->input->post('places_sel')
+            );
+            $this->session->set_userdata($newdata);
+        }
+
+        return;
+    }
+
+
+
+
 }

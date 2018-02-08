@@ -23,13 +23,13 @@ class Lk extends CI_Controller {
         else{
             $data['title'] = ucfirst('Личный кабинет');
 
-            $data['message'] = 'Тест страница';
 
 
+            $this->superdom_model->selected_places(); // чекер был обьект изменен или нет
 
             $data['customer'] = $this->superdom_model->customer();
 
-            $data['select_places'] = $this->superdom_model->select_places($data['customer']['companies']);
+            $data['select_places'] = $this->superdom_model->select_places($data['customer']['companies'], 'lk/index');
 
 
             $this->load->view('templates/header', $data);
