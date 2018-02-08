@@ -97,10 +97,10 @@
                     <!-- User -->
                     <div class="user-box">
                         <div class="user-img">
-                            <img src="assets/images/users/noname.png" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail img-responsive">
+                            <img src="<?=$_SESSION['customerImage']?>" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail img-responsive">
                             <div class="user-status offline"><i class="mdi mdi-adjust"></i></div>
                         </div>
-                        <!--h5><a href="#">Mat Helme</a> </h5-->
+                        <h5><?=$_SESSION['customerName']?></h5>
                         <ul class="list-inline">
                             <li class="list-inline-item">
                                 <!--a href="#" >
@@ -109,7 +109,7 @@
                             </li>
 
                             <li class="list-inline-item">
-                                <a href="auth/logout" class="text-custom">
+                                <a href="lk/logout" class="text-custom">
                                     <i class="mdi mdi-power"></i>
                                 </a>
                             </li>

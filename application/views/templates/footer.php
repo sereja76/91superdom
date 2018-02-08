@@ -38,6 +38,7 @@
         <script src="assets/js/jquery.slimscroll.js"></script>
         <script src="assets/js/jquery.scrollTo.min.js"></script>
 
+        <script src="assets/plugins/bootstrap-inputmask/bootstrap-inputmask.min.js" type="text/javascript"></script>
 
         <script src="assets/plugins/jquery-knob/jquery.knob.js"></script>
         <!-- App js -->

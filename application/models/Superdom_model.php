@@ -8,10 +8,6 @@ class Superdom_model extends CI_Model {
         }
 		
 	protected $base = "https://api.domyland.ru/";
-	
-	//protected $base = "http://91superdom.it-76.ru/lk/json/";
-
-
 
 	private function request($url, $params = [], $method = "GET") {
 		$opt = [
@@ -22,28 +18,50 @@ class Superdom_model extends CI_Model {
 		];
 		$context = stream_context_create($opt);
 		$query = http_build_query($params, '', '&');
-		//$query = '';
 
 		// тут же надо и ошибки обрабатывать и разбирать
-
-
-		return json_decode(file_get_contents($this->base.$url.'?'.$query, false, $context), true);  
-
-		
+		return json_decode(file_get_contents($this->base.$url.'?'.$query, false, $context), true);
 	}
 
-	public function test() {
-		//return $this->request("auth/code?phoneNumber=79031458195");
-        return $this->request("auth", ["phoneNumber"=>"+79031458195", "code"=>"6812"]);
+	public function code($phone) {
+		return $this->request("auth/code?phoneNumber={$phone}");
+
 	}
 
-    public function login () {
-	    // проверяем есть есть ли кука
-        //return $this->request("auth/code?phoneNumber=+79031458195");
-        return $this->request("auth/auth?phoneNumber=+79031458195&code=6812");
+    public function auth_code ($phoneNumber, $code) {
+
+        $auth =array(
+            'phoneNumber'   => $phoneNumber,
+            'code'  => $code
+        );
+        $request = $this->request("auth", $auth);
 
 
+        $newdata = array(
+            'phoneNumber'  => $phoneNumber,
+            //'code'     => $code,
+            'authorization'=> $request['authorization'],
+            'customerId'=> $request['customerId'],
+            'customerName'=> $request['customerName'],
+            'customerImage'=> $request['customerImage']
+        );
 
+        $this->session->set_userdata($newdata);
+
+        return $request;
     }
 
+    private function request_data($url, $params = [], $authorization, $method = "GET") {
+        $opt = [
+            "http" => [
+                "method" => $method,
+                "header" => "User-Agent: Mozilla/4.0 (compatible; SuperDom)\r\nx-appKey: superdom-web\r\nx-authorization:{$authorization}\r\nContent-type: application/x-www-form-urlencoded\r\n"
+            ]
+        ];
+        $context = stream_context_create($opt);
+        $query = http_build_query($params, '', '&');
+
+        // тут же надо и ошибки обрабатывать и разбирать
+        return json_decode(file_get_contents($this->base.$url.'?'.$query, false, $context), true);
+    }
 }	
