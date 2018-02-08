@@ -1,31 +1,26 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Lk extends CI_Controller {
+class Lk extends CI_Controller
+{
 
-	public function __construct()
-	{
-		parent::__construct();
-		$this->load->model(array('superdom_model'));
-		//$this->load->database();
-		$this->load->library(array('ion_auth','form_validation','session'));
-		$this->load->helper(array('url','language', 'url_helper', 'form','cookie'));
-		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model(array('superdom_model'));
+        //$this->load->database();
+        $this->load->library(array('ion_auth', 'form_validation', 'session'));
+        $this->load->helper(array('url', 'language', 'url_helper', 'form', 'cookie'));
+        $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
-	}
+    }
 
 
-	public function index()
-	{
-		if (!isset($_SESSION['phoneNumber']))
-		{
+    public function index()
+    {
+        if (!isset($_SESSION['phoneNumber'])) {
             redirect('lk/login', 'refresh');
-		}
-        else{
+        } else {
             $data['title'] = ucfirst('Личный кабинет');
-
-
-
-            $this->superdom_model->selected_places(); // чекер был обьект изменен или нет
 
             $data['customer'] = $this->superdom_model->customer();
 
@@ -35,11 +30,27 @@ class Lk extends CI_Controller {
             $this->load->view('templates/header', $data);
             $this->load->view('user/index', $data);
             $this->load->view('templates/footer', $data);
-         }
+        }
+    }
+
+    public function servis()
+    {
+        if (!isset($_SESSION['phoneNumber'])) {
+            redirect('lk/login', 'refresh');
+        } else {
+            $data['title'] = ucfirst('Сервис');
+
+            $this->superdom_model->selected_places(); // чекер был обьект изменен или нет
+
+            $data['customer'] = $this->superdom_model->customer();
+            $data['select_places'] = $this->superdom_model->select_places($data['customer']['companies'], 'lk/servis');
 
 
-
-	}
+            $this->load->view('templates/header', $data);
+            $this->load->view('user/servis', $data);
+            $this->load->view('templates/footer', $data);
+        }
+    }
 
     public function login()
     {
@@ -47,14 +58,12 @@ class Lk extends CI_Controller {
 
         $this->form_validation->set_rules('phone', 'Телефон', 'trim|required|min_length[5]|max_length[15]');
 
-        if ($this->form_validation->run() == FALSE)
-        {
-            echo'не прошла проверка';
+        if ($this->form_validation->run() == FALSE) {
+            echo 'не прошла проверка';
             $this->load->view('user/login', $data);
-        }
-        else // успешно сохраняется
+        } else // успешно сохраняется
         {
-            echo'проверка прошла';
+            echo 'проверка прошла';
 
             $data['code'] = $this->superdom_model->code($this->input->post('phone'));
             $data['phone'] = $this->input->post('phone');
@@ -63,6 +72,7 @@ class Lk extends CI_Controller {
 
         }
     }
+
     public function auth()
     {
         $data['title'] = ucfirst('Личный кабинет');
@@ -70,12 +80,10 @@ class Lk extends CI_Controller {
         $this->form_validation->set_rules('code', 'Код', 'trim|required|min_length[1]|max_length[15]');
         $this->form_validation->set_rules('phone', 'Телефон', 'trim|required|min_length[5]|max_length[15]');
 
-        if ($this->form_validation->run() == FALSE)
-        {
+        if ($this->form_validation->run() == FALSE) {
             //echo'не прошла проверка';
             $this->load->view('user/auth', $data);
-        }
-        else // успешно сохраняется
+        } else // успешно сохраняется
         {
             //echo'проверка прошла';
 
@@ -87,7 +95,7 @@ class Lk extends CI_Controller {
     }
 
 
-    public function logout ()
+    public function logout()
     {
         delete_cookie('auth');
 

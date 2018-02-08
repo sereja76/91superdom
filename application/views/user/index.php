@@ -7,15 +7,15 @@
 
 <?
 
-
+print_r($customer);
 
 print_r($customer['companies']);
 
 
 
 
-print_r($_SESSION); ?>
-<? //print_r($customer); ?>
+?>
+
     </pre>
 
 
