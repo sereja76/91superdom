@@ -101,6 +101,12 @@
                             <div class="user-status offline"><i class="mdi mdi-adjust"></i></div>
                         </div>
                         <h5><?=$_SESSION['customerName']?></h5>
+
+                        <?=$select_places?>
+
+
+
+
                         <ul class="list-inline">
                             <li class="list-inline-item">
                                 <!--a href="#" >
@@ -130,18 +136,7 @@
 
                             
 							<li>
-                                <a href="#" class="waves-effect"><i class="fa fa-shopping-basket"></i> <span> Заказ услуг </span> </a>
-                            </li>
-
-                            
-							<li>
-                                <a href="#" class="waves-effect"><i class="fa fa-shopping-basket"></i> <span> Просмотр счетов и оплата </span> </a>
-                            </li>
-
-
-                            
-							<li>
-                                <a href="#" class="waves-effect"><i class="fa fa-shopping-basket"></i> <span> Информация об УК </span> </a>
+                                <a href="#" class="waves-effect"><i class="fa fa-shopping-basket"></i> <span> Счета</span> </a>
                             </li>
 
                             
@@ -150,6 +145,19 @@
                             </li>
 
 
+                            
+							<li>
+                                <a href="#" class="waves-effect"><i class="fa fa-shopping-basket"></i> <span> Новости </span> </a>
+                            </li>
+
+                            
+							<li>
+                                <a href="#" class="waves-effect"><i class="fa fa-shopping-basket"></i> <span> Опросы </span> </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="waves-effect"><i class="fa fa-shopping-basket"></i> <span> Информация </span> </a>
+                            </li>
 
 
 

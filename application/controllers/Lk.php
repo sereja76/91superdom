@@ -25,6 +25,13 @@ class Lk extends CI_Controller {
 
             $data['message'] = 'Тест страница';
 
+
+
+            $data['customer'] = $this->superdom_model->customer();
+
+            $data['select_places'] = $this->superdom_model->select_places($data['customer']['companies']);
+
+
             $this->load->view('templates/header', $data);
             $this->load->view('user/index', $data);
             $this->load->view('templates/footer', $data);
