@@ -1,22 +1,18 @@
+<?php
+echo '<div class="col-md-12">
+                                <div class="card-box">';
+?>
+
 <p>Главная страница личного кабинета</p>
 
 
-
-<pre>
-
-
 <?
+/*print_r($customer);
 
-print_r($customer);
+print_r($customer['companies']);*/
 
-print_r($customer['companies']);
-
-
-
-
+echo '</div></div>';
 ?>
-
-    </pre>
 
 
 

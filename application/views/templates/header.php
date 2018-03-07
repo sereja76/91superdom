@@ -26,7 +26,7 @@
     <body class="fixed-left">
 
         <!-- Begin page -->
-        <div id="wrapper">
+        <!--<div id="wrapper">-->
 
             <!-- Top Bar Start -->
             <div class="topbar">
@@ -102,10 +102,11 @@
                         </div>
                         <h5><?=$_SESSION['customerName']?></h5>
 
-                        <?=$select_places?>
-
-
-
+                        <?
+                            if (!isset($sel_or_not)){
+                                echo $select_places;
+                            }
+                        ?>
 
                         <ul class="list-inline">
                             <li class="list-inline-item">
@@ -126,22 +127,22 @@
                     <div id="sidebar-menu">
                         <ul>
                           <li class="text-muted menu-title">Меню</li>
-							<li>
+							<!--<li>
                                 <a href="lk/index" class="waves-effect"><i class="fa fa-vcard-o"></i> <span> Главная </span> </a>
-                            </li>
+                            </li>-->
 							
 							<li>
-                                <a href="lk/data" class="waves-effect"><i class="fa fa-vcard-o"></i> <span># Профиль </span> </a>
+                                <a href="lk/profile" class="waves-effect"><i class="fa fa-vcard-o"></i> <span> Профиль </span> </a>
                             </li>
 
                             
 							<li>
-                                <a href="#" class="waves-effect"><i class="fa fa-shopping-basket"></i> <span># Счета</span> </a>
+                                <a href="lk/bills" class="waves-effect"><i class="fa fa-shopping-basket"></i> <span> Счета</span> </a>
                             </li>
 
                             
 							<li>
-                                <a href="lk/servis" class="waves-effect"><i class="fa fa-shopping-basket"></i> <span> Сервис </span> </a>
+                                <a href="lk/servis" class="waves-effect"><i class="fa fa-shopping-basket"></i> <span> # Сервис </span> </a>
                             </li>
 
 
@@ -158,11 +159,6 @@
                             <li>
                                 <a href="#" class="waves-effect"><i class="fa fa-shopping-basket"></i> <span># Информация </span> </a>
                             </li>
-
-
-
-
-
 
                         </ul>
                         <div class="clearfix"></div>
@@ -190,8 +186,8 @@
                             <div class="col-md-12">
                                 <div class="card-box">
 
-                                    <h3>Отладочная информация:</h3>
+                                   <!-- <h3>Отладочная информация:</h3>
                                     <pre>
-                                        <? print_r($_SESSION); ?>
-                                    </pre>
+                                        <?/*  //print_r($_SESSION); */?>
+                                    </pre>-->
 	

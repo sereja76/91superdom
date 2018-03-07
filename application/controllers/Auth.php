@@ -66,15 +66,13 @@ class Auth extends CI_Controller {
 				//redirect them back to the home page
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
 
-					if ($this->ion_auth->in_group('admin')) {
+					/*if ($this->ion_auth->in_group('admin')) {
 							redirect('admin/index', 'refresh');
-						}
+						}*/
 					if ($this->ion_auth->in_group('members')) {
-							redirect('lk/index', 'refresh');
+							redirect('lk/servis', 'refresh');
 						}
-					if ($this->ion_auth->in_group('autor')) {
-							redirect('autor/index', 'refresh');
-						}
+
 			}
 			else
 			{
